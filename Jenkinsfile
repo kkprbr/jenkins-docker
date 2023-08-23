@@ -20,7 +20,7 @@ pipeline {
         }
         
  environment {
-    DOCKERHUB_CREDENTIALS = credentials('00e7cf5b-9cbd-4ae1-96d1-334d57767a3a')
+    DOCKERHUB_CREDENTIALS = credentials('dockerhubcredentials')
  }
 	 
   stage('Docker Build and Tag') {
