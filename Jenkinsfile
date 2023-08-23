@@ -21,7 +21,7 @@ pipeline {
         
  environment {
 		DOCKERHUB_CREDENTIALS=credentials('dockerhubcredentials')
-	}
+        }
 	 
   stage('Docker Build and Tag') {
            steps {
@@ -36,7 +36,7 @@ stage('Login') {
 	   steps {
 		sh 'echo $DOCKERHUB_CREDENTIALS_PSW | docker login -u $DOCKERHUB_CREDENTIALS_USR --password-stdin'
 		}
-	}
+}
   stage('Publish image to Docker Hub') {
           
            steps {
