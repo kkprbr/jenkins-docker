@@ -20,24 +20,28 @@ pipeline {
         }
         
  environment {
-    DOCKERHUB_CREDENTIALS = credentials('dockerhubcredentials')
- }
+		DOCKERHUB_CREDENTIALS=credentials('dockerhubcredentials')
+	}
 	 
   stage('Docker Build and Tag') {
            steps {
               
                 sh 'docker build -t samplewebapp:latest .' 
                 sh 'docker tag samplewebapp teachmycloud/samplewebapp:latest'
-                //sh 'docker tag samplewebapp teachmycloud/samplewebapp:$BUILD_NUMBER'  
-          }
+                }
         }  
+
+stage('Login') {
+
+	   steps {
+		sh 'echo $DOCKERHUB_CREDENTIALS_PSW | docker login -u $DOCKERHUB_CREDENTIALS_USR --password-stdin'
+		}
+	}
   stage('Publish image to Docker Hub') {
           
-            steps {
-            withDockerRegistry([ credentialsId: "dockerhubcredentials", url: "" ])
-	    sh  'docker push teachmycloud/samplewebapp:latest'
-        //  sh  'docker push teachmycloud/samplewebapp:$BUILD_NUMBER' 
-        }
+           steps {
+               sh  'docker push teachmycloud/samplewebapp:latest'
+               }
                   
      }
      
