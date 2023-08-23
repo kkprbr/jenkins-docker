@@ -22,7 +22,8 @@ pipeline {
         
  environment {
     DOCKERHUB_CREDENTIALS = credentials('dockerHub')
-
+ }
+	 
   stage('Docker Build and Tag') {
            steps {
               
@@ -64,5 +65,3 @@ stage('Login') {
             }
         }
     }
- }
-    
