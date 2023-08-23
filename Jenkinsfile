@@ -37,15 +37,7 @@ stage('Docker Build and Tag') {
           }
         }
      
-      stage('Run Docker container on Jenkins Agent') {
-             
-            steps 
-   {
-                sh "docker run -d -p 8003:8080 teachmycloud/samplewebapp"
- 
-            }
-        }
- stage('Run Docker container on remote hosts') {
+  stage('Run Docker container on remote hosts') {
              
             steps {
                 sh "docker -H ssh://jenkins@10.138.0.14 run -d -p 8003:8080 teachmycloud/samplewebapp"
