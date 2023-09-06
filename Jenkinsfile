@@ -30,7 +30,7 @@ stage('Docker Build and Tag') {
   stage('Publish image to Docker Hub') {
           
             steps {
-        withDockerRegistry([ credentialsId: "docker authentication", url: "" ]) {
+        withDockerRegistry([ credentialsId: "docker authentication", url: "https://hub.docker.com/repository/docker/9963565745/samplewebapp/general" ]) {
           sh  'docker push 9963565745/samplewebapp:latest'
         }
                   
